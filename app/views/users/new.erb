@@ -1,7 +1,11 @@
-
-
-<div id="sign-up" style="background-image: https://images.unsplash.com/photo-1545252681-4cc81120c471?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=633&q=80">
+<div class="blog-masthead">
+        <nav class="blog-nav">
+          <a class="blog-nav-item " href=<%="#{users_path}"%>>X  A  N  G  A </a>
+      </nav>
+</div>
+<div id="form">
   <bold><h1> Sign Up </h1><bold><br>
 
   <%= render 'form' %>
+  <%= link_to "Back to Homepage", users_path %>
 </div>
