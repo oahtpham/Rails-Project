@@ -1,0 +1,31 @@
+
+<ol>
+<% if @errors %>
+  <% @errors.each do |message| %>
+    <li><%= message %></li>
+    <%end %>
+<% end %>
+</ol>
+
+<%= form_for @user do |f| %>
+  <%= f.label :username %><br>
+  <%= f.text_field :user_name, :size => 40 %><br><br>
+
+  <%= f.label :full_name %><br>
+  <%= f.text_field :full_name, :size => 40  %><br><br>
+
+  <%= f.label :Tagline %><br>
+  <%= f.text_field :bio, :size => 40  %><br><br>
+
+  <%= f.label :age %><br>
+  <%= f.number_field :age, :size => 70  %><br><br>
+
+  <%= "Add Image (URL only)" %><br>
+  <%= f.text_field :img_url, :size => 40  %><br><br><br>
+
+
+  <%= f.submit "Get Started", class: "btn btn-primary btn-lg" %>
+
+<% end %>
+
+<%= link_to "Back to Homepage", users_path %>

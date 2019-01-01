@@ -1,0 +1,34 @@
+<style>
+  body {
+    text-align: center;
+  }
+</style>
+
+
+<div >
+<%= link_to "Back to User Profile", user_path(@blog.user_id), method: 'get' %>
+
+<h1><%= @blog.title %></h1>
+<p width="300">
+  <%= @blog.content %>
+</p>
+<br><br><br>
+  <h2> Comments </h2>
+  <% @blog.comments.each do |comment| %>
+    <%= link_to comment.user.full_name,   user_path(comment.user) %> says...<br>
+    <%= comment.comment %><br><br>
+    <% end %>
+
+<%= form_for @comment, url: add_comment_path, method: :post do |f| %>
+  <%= f.label :name %><br>
+  <%= f.collection_select :user_id, @users, :id, :full_name %><br>
+
+  <%= f.label :comment %><br>
+  <%= f.text_area :comment, :cols => 60, :rows => 10 %><br>
+
+  <span class="btn btn-primary btn-lg">
+  <%= f.submit "Add Comment"%>
+  </span>
+<% end %>
+
+  </div>

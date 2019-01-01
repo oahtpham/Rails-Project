@@ -1,0 +1,31 @@
+
+<div class="blog-masthead">
+        <nav class="blog-nav">
+          <a class="blog-nav-item " href=<%="#{users_path}"%>>X  A  N  G  A </a>
+      </nav>
+</div>
+
+
+<br><br>
+<div class="container">
+<div class="blog-header">
+  <% if !@user.img_url %>
+    <p>
+      <%= "No Photo Uploaded" %>
+    </p>
+    <% else %>
+      <img class="img-circle" src=<%="#{@user.img_url}"%> width="70" height="70">
+  <% end %>
+    <span class="blog-title"><%= @user.full_name + "'s Blog"%></span><br>
+</div>
+<div>
+<br>
+  Age: <%= @user.age %>
+      <% @user.blogs.each do |blog| %>
+      <h2><%= link_to blog.title, blog_path(blog)%></h2>
+      <% end %>
+<br><br><br><br>
+<%= link_to "Edit Profile", user_edit_path(@user), method: 'get' %><br>
+<%= button_to "Delete Account", user_path(@user), method: 'delete' %>
+</div>
+</div>
