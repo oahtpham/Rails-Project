@@ -13,8 +13,9 @@ Rails.application.routes.draw do
 
   get '/blogs/new', to: 'blogs#new'
   get '/blogs/:id', to: 'blogs#show', as: 'blog'
-  post '/blog/:id/comments', to: 'blogs#add_comment', as: 'add_comment'
+  post '/blog/:id/comments', to: 'comments#add_comment', as: 'add_comment'
   post '/blogs', to: 'blogs#create', as: 'create_post'
+  post '/blogs/:id', to: 'likes#create', as: 'like_blog'
 
 
 

@@ -1,19 +1,19 @@
-<style>
-  body {
-    text-align: center;
-  }
-</style>
+<div class="blog-masthead">
+        <nav class="blog-nav">
+          <a class="blog-nav-item " href=<%="#{users_path}"%>>X  A  N  G  A </a>
+      </nav>
+</div>
 
-
-<div >
-<%= link_to "Back to User Profile", user_path(@blog.user_id), method: 'get' %>
-
+<div id='form' >
 <h1><%= @blog.title %></h1>
 <p width="300">
   <%= @blog.content %>
 </p>
 <br><br><br>
-  <h2> Comments </h2>
+
+<%= button_to 'Like', like_blog_path(@blog), method: :post %><%= @blog.likes.count %> <%= (@blog.likes.count) == 1 ? 'Like' : 'Likes'%>
+<br><br><br>
+  <h3> Comments </h3><br>
   <% @blog.comments.each do |comment| %>
     <%= link_to comment.user.full_name,   user_path(comment.user) %> says...<br>
     <%= comment.comment %><br><br>
@@ -21,12 +21,15 @@
 
 <%= form_for @comment, url: add_comment_path, method: :post do |f| %>
   <%= f.label :name %><br>
-  <%= f.collection_select :user_id, @users, :id, :full_name %><br>
+  <%= f.collection_select :user_id, @users, :id, :full_name %><br><br>
 
   <%= f.label :comment %><br>
-  <%= f.text_area :comment, :cols => 60, :rows => 10 %><br>
+  <%= f.text_area :comment, :cols => 60, :rows => 5 %><br><br>
 
-  <%= f.submit "Add Comment", class: "btn btn-primary btn-lg" %>
+  <%= f.submit "Add Comment", class: "btn btn-primary btn-sm" %>
 <% end %>
+
+<%= link_to "Back to User Profile", user_path(@blog.user_id), method: 'get' %>
+
 
   </div>
