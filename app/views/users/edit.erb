@@ -1,13 +1,10 @@
-
-<div class="blog-masthead">
-        <nav class="blog-nav">
-          <a class="blog-nav-item " href=<%="#{users_path}"%>>X  A  N  G  A </a>
-      </nav>
-</div>
+<%= render 'header' %>
 <div id="form">
 
 <bold><h1>Edit Profile</h1></bold>
 <br>
 <%= render 'form' %>
+<%= button_to "Delete Account", user_path(@user), method: 'delete' %>
 <%= link_to "Back to User Profile", user_path(@user), method: 'get' %>
+
 </div>

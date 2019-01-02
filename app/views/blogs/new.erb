@@ -1,8 +1,4 @@
-<div class="blog-masthead">
-        <nav class="blog-nav">
-          <a class="blog-nav-item " href=<%="#{users_path}"%>>X  A  N  G  A </a>
-      </nav>
-</div>
+<%= render 'header' %>
 <div id="form">
 <bold><h1>New Blog Post</h1></bold><br>
 <%= form_for @blog, url: create_post_path, method: :post do |f| %>

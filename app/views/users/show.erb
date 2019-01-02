@@ -1,10 +1,4 @@
-
-<div class="blog-masthead">
-        <nav class="blog-nav">
-          <a class="blog-nav-item " href=<%="#{users_path}"%>>X  A  N  G  A </a>
-      </nav>
-</div>
-
+<%= render 'header' %>
 <br><br>
 <div class="container">
 <div class="blog-header">
@@ -25,6 +19,5 @@
 <br><br><br><br>
 <%= link_to "New Post", blogs_new_path, method: 'get' %><br>
 <%= link_to "Edit Profile", user_edit_path(@user), method: 'get' %><br>
-<%= button_to "Delete Account", user_path(@user), method: 'delete' %>
 </div>
 </div>

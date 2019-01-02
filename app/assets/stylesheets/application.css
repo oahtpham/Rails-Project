@@ -11,6 +11,13 @@
  * It is generally better to create a new file per style scope.
  */
 
+#blog-body {
+  padding: 40;
+  margin-right: 70;
+  margin-left: 70;
+  font-family: 'Quicksand', sans-serif;
+}
+
 #form {
   padding: 20;
   text-align: center;
@@ -31,7 +38,7 @@
  }
 
  .subtitle {
-   font-size: 7rem;
+   font-size: 4rem;
    font-family: 'Poiret One', cursive;
    color: #FFFFFF;
  }

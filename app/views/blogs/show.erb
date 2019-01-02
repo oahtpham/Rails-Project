@@ -1,18 +1,13 @@
-<div class="blog-masthead">
-        <nav class="blog-nav">
-          <a class="blog-nav-item " href=<%="#{users_path}"%>>X  A  N  G  A </a>
-      </nav>
-</div>
+<%= render 'header' %>
 
-<div id='form' >
-<h1><%= @blog.title %></h1>
+<div id='blog-body' >
+<h1><%= @blog.title %></h1><br>
 <p width="300">
   <%= @blog.content %>
-</p>
-<br><br><br>
+</p><br><br>
 
 <%= button_to 'Like', like_blog_path(@blog), method: :post %><%= @blog.likes.count %> <%= (@blog.likes.count) == 1 ? 'Like' : 'Likes'%>
-<br><br><br>
+<br><br>
   <h3> Comments </h3><br>
   <% @blog.comments.each do |comment| %>
     <%= link_to comment.user.full_name,   user_path(comment.user) %> says...<br>
