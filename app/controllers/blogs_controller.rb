@@ -18,6 +18,11 @@ class BlogsController < ApplicationController
     render :show
   end
 
+  def delete
+    @blog = Blog.find(params[:id]).destroy
+    redirect_to user_path(@blog.user.user_name)
+  end
+
 private
 
   def blog_params

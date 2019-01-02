@@ -24,7 +24,7 @@
       <img class="img-circle" src=<%="#{user.img_url}"%> width="200" height="200">
     <% end %>
     <br><br> <span class="lead blog-description"><%= user.bio %></span>
-    <br><br><a class="btn btn-default" href=<%="#{user_path(user)}"%> role="button">View details »</a>
+    <br><br><a class="btn btn-default" href=<%="#{user_path(user.user_name)}"%> role="button">View details »</a>
     </div>
   <% end %>
 </div>

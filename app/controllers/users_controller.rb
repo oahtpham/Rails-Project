@@ -2,9 +2,9 @@ class UsersController < ApplicationController
 
   def search
     if @user =    User.find_by(full_name: params[:search])
-      redirect_to user_path(@user)
+      redirect_to user_path(@user.user_name)
     elsif @user =    User.find_by(user_name: params[:search])
-      redirect_to user_path(@user)
+      redirect_to user_path(@user.user_name)
     else
       render :error
     end
@@ -45,14 +45,14 @@ class UsersController < ApplicationController
   def update
     find_user
     if @user.update(strong_params)
-      redirect_to user_path(@user)
+      redirect_to user_path(@user.user_name)
     else
       @errors = @user.errors.full_messages
       render :edit
     end
   end
 
-  def delete
+  def destroy
     find_user
     @user.delete
     redirect_to users_path
@@ -66,7 +66,7 @@ class UsersController < ApplicationController
   end
 
   def find_user
-     @user = User.find(params[:id])
+     @user = User.find_by(user_name: params[:user_name])
   end
 
 end

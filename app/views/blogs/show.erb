@@ -23,8 +23,8 @@
 
   <%= f.submit "Add Comment", class: "btn btn-primary btn-sm" %>
 <% end %>
-
-<%= link_to "Back to User Profile", user_path(@blog.user_id), method: 'get' %>
+<%= button_to "Delete Post", blog_path(@blog), method: 'delete' %>
+<%= link_to "Back to User Profile", user_path(@blog.user.user_name), method: 'get' %>
 
 
   </div>

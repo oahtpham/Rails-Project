@@ -4,7 +4,7 @@
 <bold><h1>Edit Profile</h1></bold>
 <br>
 <%= render 'form' %>
-<%= button_to "Delete Account", user_path(@user), method: 'delete' %>
-<%= link_to "Back to User Profile", user_path(@user), method: 'get' %>
+<%= button_to "Delete Account", user_path(@user.user_name), method: 'delete' %>
+<%= link_to "Back to User Profile", user_path(@user.user_name), method: 'get' %>
 
 </div>
