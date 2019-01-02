@@ -7,17 +7,22 @@
       <%= "No Photo Uploaded" %>
     </p>
     <% else %>
-      <img class="img-circle" src=<%="#{@user.img_url}"%> width="70" height="70">
+      <img class="img-circle" src=<%="#{@user.img_url}"%> width="90" height="90">
   <% end %>
-    <span class="blog-title"><%= @user.full_name + "'s Blog"%></span><br>
+    <span class="blog-title"><%= "#{@user.first_name}'s Blog"%></span><br>
 </div>
 <div>
-<br>
+<br><br>
       <% @user.blogs.each do |blog| %>
       <h2><%= link_to blog.title, blog_path(blog)%></h2>
+      <h5><%= blog.created_at.strftime("%A  %B %d, %Y") %></h5>
+      <br>
+      <%= simple_format(blog.content) %><br>
+      <%= blog.likes.count %><%= (blog.likes.count) == 1 ? ' Like' : ' Likes'%> : <%= blog.comments.count %><%= (blog.comments.count) == 1 ? ' Comment' : ' Comments'%><br><br>
+      ----------------------------------------------------<br><br><br>
       <% end %>
 <br><br><br><br>
-<%= link_to "New Post", blogs_new_path, method: 'get' %><br>
+<%= link_to "New Post", new_blog_path, method: 'get' %><br>
 <%= link_to "Edit Profile", edit_user_path(@user.user_name), method: 'get' %><br>
 </div>
 </div>

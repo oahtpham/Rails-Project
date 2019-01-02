@@ -1,8 +1,48 @@
 <%= render 'header' %>
 
+<ol>
+<% if @errors %>
+  <% @errors.each do |message| %>
+    <li><%= message %></li>
+    <%end %>
+<% end %>
+</ol>
+
 <div id="form">
   <bold><h1> Sign Up </h1><bold><br>
 
-  <%= render 'form' %>
+    <%= form_for @user do |f| %>
+
+      <h4><strong><u> Account Info: </u></strong></h4><br>
+
+      <%= f.label :username %><br>
+      <%= f.text_field :user_name, :size => 50 %><br><br>
+
+      <%= f.label :password %><br>
+      <%= f.password_field :password, :size => 50 %><br><br>
+
+      <%= f.label :password_confirmation %><br>
+      <%= f.password_field :password_confirmation, :size => 50 %><br><br><br>
+
+      <h4><strong><u> User Info: </u></strong></h4><br>
+
+      <%= f.label :first_name %><br>
+      <%= f.text_field :first_name, :size => 50  %><br><br>
+
+      <%= f.label :last_name %><br>
+      <%= f.text_field :last_name, :size => 50  %><br><br>
+
+      <%= f.label :Tagline %><br>
+      <%= f.text_field :bio, :size => 50  %><br><br>
+
+      <%= f.label :age %><br>
+      <%= f.number_field :age, :size => 70  %><br><br>
+
+      <%= "Add Image (URL only)" %><br>
+      <%= f.text_field :img_url, :size => 50  %><br><br><br>
+
+      <%= f.submit "Submit", class: "btn btn-primary btn-lg" %>
+
+    <% end %>
   <%= link_to "Back to Homepage", users_path %>
 </div>

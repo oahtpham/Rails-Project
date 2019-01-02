@@ -3,8 +3,59 @@
 
 <bold><h1>Edit Profile</h1></bold>
 <br>
-<%= render 'form' %>
-<%= button_to "Delete Account", user_path(@user.user_name), method: 'delete' %>
-<%= link_to "Back to User Profile", user_path(@user.user_name), method: 'get' %>
 
+<ol>
+<% if @errors %>
+  <% @errors.each do |message| %>
+    <li><%= message %></li>
+    <%end %>
+<% end %>
+</ol>
+
+<% if !@user.img_url %>
+  <p>
+    <%= "No Photo Uploaded" %>
+  </p>
+  <% else %>
+    <img class="img-circle" src=<%="#{@user.img_url}"%> width="150" height="150">
+<% end %>
+<br><br><br>
+
+<%= form_for @user, :url => user_path(@user.user_name) do |f| %>
+
+  <h4><strong><u> Account Info: </u></strong></h4><br>
+
+  <%= f.label :username %><br>
+  <%= f.text_field :user_name, :size => 50 %><br><br>
+
+  <%= f.label :password %><br>
+  <%= f.password_field :password, :size => 50 %><br><br>
+
+  <%= f.label :password_confirmation %><br>
+  <%= f.password_field :password_confirmation, :size => 50 %><br><br><br>
+
+  <h4><strong><u> User Info: </u></strong></h4><br>
+
+  <%= f.label :first_name %><br>
+  <%= f.text_field :first_name, :size => 50  %><br><br>
+
+  <%= f.label :last_name %><br>
+  <%= f.text_field :last_name, :size => 50  %><br><br>
+
+  <%= f.label :Tagline %><br>
+  <%= f.text_field :bio, :size => 50  %><br><br>
+
+  <%= f.label :age %><br>
+  <%= f.number_field :age, :size => 70  %><br><br>
+
+  <%= "Add Image (URL only)" %><br>
+  <%= f.text_field :img_url, :size => 50  %><br><br><br>
+
+  <%= f.submit "Submit", class: "btn btn-primary btn-lg" %>
+
+<% end %>
+
+<%= link_to "Back to User Profile", user_path(@user.user_name), method: 'get' %>
+<br><br><br>
+<%= button_to "Delete Account", user_path(@user.user_name), method: 'delete' %>
 </div>

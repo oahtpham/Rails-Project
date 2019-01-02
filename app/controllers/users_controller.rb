@@ -1,9 +1,9 @@
 class UsersController < ApplicationController
 
   def search
-    if @user =    User.find_by(full_name: params[:search])
+    if @user = User.find_by(first_name: params[:search])
       redirect_to user_path(@user.user_name)
-    elsif @user =    User.find_by(user_name: params[:search])
+    elsif @user = User.find_by(user_name: params[:search])
       redirect_to user_path(@user.user_name)
     else
       render :error
@@ -29,7 +29,6 @@ class UsersController < ApplicationController
   def create
     @user = User.create(strong_params)
     if @user.valid?
-      # @user.save
       redirect_to users_path
     else
       @errors = @user.errors.full_messages
@@ -52,7 +51,7 @@ class UsersController < ApplicationController
     end
   end
 
-  def destroy
+  def delete
     find_user
     @user.delete
     redirect_to users_path
@@ -62,7 +61,7 @@ class UsersController < ApplicationController
 
 
   def strong_params
-    params.require(:user).permit(:user_name, :full_name, :age, :bio, :img_url)
+    params.require(:user).permit(:user_name, :first_name, :last_name, :age, :bio, :img_url, :password)
   end
 
   def find_user

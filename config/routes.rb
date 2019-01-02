@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
+  resources :blogs, except: :index
 
   root 'users#index'
+
+  get '/login' => 'sessions#new'
+  post '/login' => 'sessions#create'
+  post '/logout' => 'sessions#destroy'
 
   get '/users', to: 'users#index'
   get '/users/new', to: 'users#new'
@@ -11,13 +16,17 @@ Rails.application.routes.draw do
   delete '/users/:user_name', to: 'users#delete'
   post '/users/search', to: 'users#search', as: 'search'
 
-  get '/blogs/new', to: 'blogs#new'
-  get '/blogs/:id', to: 'blogs#show', as: 'blog'
-  post '/blog/:id/comments', to: 'comments#add_comment', as: 'add_comment'
-  post '/blogs', to: 'blogs#create', as: 'create_post'
-  post '/blogs/:id', to: 'likes#create', as: 'like_blog'
-  delete '/blogs/:id', to: 'blogs#delete'
+  # get '/blogs/new', to: 'blogs#new'
+  # get '/blogs/:id', to: 'blogs#show', as: 'blog'
+  # get '/blogs/:id/edit', to: 'blogs#edit', as: 'edit_blog'
+  #
+  # post '/blogs', to: 'blogs#create', as: 'create_post'
+  #
+  # patch 'blogs/:id', to: 'blogs#update'
+  # delete '/blogs/:id', to: 'blogs#delete'
 
+  post '/blogs/:id', to: 'likes#create', as: 'like_blog'
+  post '/blog/:id/comments', to: 'comments#add_comment', as: 'add_comment'
 
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
