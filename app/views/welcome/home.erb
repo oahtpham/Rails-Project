@@ -8,7 +8,7 @@
     <% else %>
       <img class="img-circle" src=<%="#{@user.img_url}"%> width="90" height="90">
   <% end %>
-    <span class="blog-title"><%= "#{@user.first_name}'s Blog"%></span><br>
+    <span class="blog-title"><%= "Welcome, #{@user.first_name}!"%></span><br>
 </div>
 <div>
 <br><br>
@@ -24,5 +24,4 @@
 </div>
 </div>
 
-
-<iframe width='0' height='0' src='https://www.youtube.com/embed/<%=@user.music_url.reverse[0..10].reverse%>?autoplay=1' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>
+<iframe width="0" height="0" src="https://www.youtube.com/embed/<%=@user.music_url.reverse[0..10].reverse%>?autoplay=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

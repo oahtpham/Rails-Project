@@ -1,4 +1,3 @@
-<%= render 'header' %>
 <div id="form">
 
 <bold><h1>Edit Profile</h1></bold>
@@ -48,10 +47,10 @@
   <%= f.label :age %><br>
   <%= f.number_field :age, :size => 70  %><br><br>
 
-  <% f.label :img_url %>Add Image (URL only):<br>
+  <%= "Add Image (URL only):" %><br>
   <%= f.text_field :img_url, :size => 50  %><br><br>
 
-  <% f.label :music_url %>Add Music to your page with Youtube ID (11-digit code in link): <br>
+  <%= "Add Music to your page with YouTube Link:" %><br>
   <%= f.text_field :music_url, :size => 50 %><br><br><br>
 
   <%= f.submit "Submit", class: "btn btn-primary btn-lg" %>

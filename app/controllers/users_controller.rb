@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  # skip_before_action :authorized, only: [:index, :new, :create, :show]
 
   def search
     if @user = User.find_by(first_name: params[:search])
@@ -12,6 +13,9 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
+    if session[:user_id]
+      @user = User.find(session[:user_id])
+    end
     render :index
   end
 
@@ -29,10 +33,11 @@ class UsersController < ApplicationController
   def create
     @user = User.create(strong_params)
     if @user.valid?
-      redirect_to users_path
+      session[:user_id] = @user.id
+      redirect_to controller:'welcome', action: 'home'
     else
       @errors = @user.errors.full_messages
-      render :new
+      redirect_to users_new_path
     end
   end
 
@@ -61,7 +66,7 @@ class UsersController < ApplicationController
 
 
   def strong_params
-    params.require(:user).permit(:user_name, :first_name, :last_name, :age, :bio, :img_url, :password, :music_url)
+    params.require(:user).permit(:user_name, :first_name, :last_name, :age, :bio, :img_url, :password, :password_confirmation, :music_url)
   end
 
   def find_user

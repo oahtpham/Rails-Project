@@ -20,6 +20,11 @@ body {
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
   <body>
+    <% if current_user   %>
+      <%= render 'header1' %>
+    <% else %>
+      <%= render 'header2' %>
+    <% end  %>
     <%= yield %>
   </body>
 </html>

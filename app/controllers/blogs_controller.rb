@@ -3,11 +3,13 @@ class BlogsController < ApplicationController
   def new
     @blog = Blog.new
     @users = User.all
+    find_user
   end
 
   def create
     @users = User.all
     @blog = Blog.create(blog_params)
+    @blog.update(user_id: session[:user_id])
     redirect_to blog_path(@blog)
   end
 
@@ -15,12 +17,14 @@ class BlogsController < ApplicationController
     find_blog
     @comment = Comment.new
     @users = User.all
+    find_user
     render :show
   end
 
   def edit
     @users = User.all
     find_blog
+    find_user
     render :edit
   end
 
@@ -38,11 +42,15 @@ class BlogsController < ApplicationController
 private
 
   def blog_params
-    params.require(:blog).permit(:user_id, :title, :content)
+    params.require(:blog).permit(:title, :content)
   end
 
   def find_blog
      @blog = Blog.find(params[:id])
+  end
+
+  def find_user
+    @user = User.find(session[:user_id])
   end
 
 

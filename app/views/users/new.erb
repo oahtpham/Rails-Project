@@ -1,5 +1,3 @@
-<%= render 'header' %>
-
 <ol>
 <% if @errors %>
   <% @errors.each do |message| %>
@@ -38,10 +36,10 @@
       <%= f.label :age %><br>
       <%= f.number_field :age, :size => 70  %><br><br>
 
-      <%= "Add Image (URL only)" %><br>
+      <%= "Add Image (URL only):" %><br>
       <%= f.text_field :img_url, :size => 50  %><br><br>
 
-      <%= "Add Music to your page with Youtube ID (11-digit code in link)" %><br>
+      <%= "Add Music to your page with YouTube Link:" %><br>
       <%= f.text_field :music_url, :size => 50 %><br><br><br>
 
       <%= f.submit "Submit", class: "btn btn-primary btn-lg" %>
