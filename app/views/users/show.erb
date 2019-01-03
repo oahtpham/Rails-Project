@@ -15,14 +15,16 @@
 <br><br>
       <% @user.blogs.each do |blog| %>
       <h2><%= link_to blog.title, blog_path(blog)%></h2>
-      <h5><%= blog.created_at.strftime("%A  %B %d, %Y") %></h5>
+      <h5><%= blog.created_at.strftime("%A,  %B %d, %Y") %></h5>
       <br>
       <%= simple_format(blog.content) %><br>
       <%= blog.likes.count %><%= (blog.likes.count) == 1 ? ' Like' : ' Likes'%> : <%= blog.comments.count %><%= (blog.comments.count) == 1 ? ' Comment' : ' Comments'%><br><br>
       ----------------------------------------------------<br><br><br>
       <% end %>
-<br><br><br><br>
+<br><br><br>
 <%= link_to "New Post", new_blog_path, method: 'get' %><br>
-<%= link_to "Edit Profile", edit_user_path(@user.user_name), method: 'get' %><br>
+<%= link_to "Edit Profile", edit_user_path(@user.user_name), method: 'get' %><br><br><br>
 </div>
 </div>
+
+<iframe width="0" height="0" src="https://www.youtube.com/embed/<%=@user.music_url%>?autoplay=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
