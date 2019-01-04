@@ -1,11 +1,14 @@
 class UsersController < ApplicationController
-  # skip_before_action :authorized, only: [:index, :new, :create, :show]
+  skip_before_action :authorized, only: [:search, :index, :new, :create, :show]
 
   def search
-    if @user = User.find_by(first_name: params[:search])
-      redirect_to user_path(@user.user_name)
-    elsif @user = User.find_by(user_name: params[:search])
-      redirect_to user_path(@user.user_name)
+    @user = current_user
+    @results = []
+    @results << User.where('first_name LIKE ?', "%#{params[:search]}%")
+    @results << User.where('last_name LIKE ?', "%#{params[:search]}%")
+    @results << User.where('user_name LIKE ?', "%#{params[:search]}%")
+    if @results
+      render :results
     else
       render :error
     end
@@ -13,8 +16,8 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
-    if session[:user_id]
-      @user = User.find(session[:user_id])
+    if current_user
+      @user = User.find(current_user.id)
     end
     render :index
   end

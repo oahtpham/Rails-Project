@@ -1,31 +1,41 @@
-<div id='blog-body' >
-<h1><%= @blog.title %></h1>
-<h4><%= @blog.created_at.strftime("%A,  %B %d, %Y") %></h4><br>
-<p width="300">
-  <%= simple_format(@blog.content) %>
-</p><br><br>
-
-<%= button_to 'Like', like_blog_path(@blog), method: :post %><%= @blog.likes.count %> <%= (@blog.likes.count) == 1 ? 'Like' : 'Likes'%>
 <br><br>
-  <h4><strong><u> Comments </u></strong></h4><br>
-  <% @blog.comments.each do |comment| %>
-    <%= link_to comment.user.first_name, user_path(comment.user.user_name) %> says...<br>
-    <%= comment.comment %><br><br>
+<div class="container">
+  <h1><%= @blog.title %></h1>
+  <h4><%= @blog.created_at.strftime("%A,  %B %d, %Y") %></h4><br>
+  <p width="300">
+    <%= simple_format(@blog.content) %>
+  </p><br><br>
+
+  <%= button_to 'Like', like_blog_path(@blog), method: :post %><%= @blog.likes.count %> <%= (@blog.likes.count) == 1 ? 'Like' : 'Likes'%>
+  <br><br>
+    <h4><strong><u> Comments </u></strong></h4><br>
+    <% @blog.comments.each do |comment| %>
+      <% if @user.img_url %>
+        <img class="img-circle" src=<%="#{comment.user.img_url}"%> width="30" height="30">
+      <% end %>
+      <%= link_to comment.user.first_name, user_path(comment.user.user_name) %> says... <br>
+      <%= comment.comment %><br>
+      <% if comment.user == current_user %>
+        <%= link_to "Delete comment", delete_comment_path %> <br><br>
+      <% else %>
+        <br>
+      <% end %>
     <% end %>
 
-<%= form_for @comment, url: add_comment_path, method: :post do |f| %>
-  <%= f.label :name %><br>
-  <%= f.collection_select :user_id, @users, :id, :user_name %><br><br>
+  <%= form_for @comment, url: add_comment_path, method: :post do |f| %>
+    <%= f.label :comment %><br>
+    <%= f.text_area :comment, :cols => 60, :rows => 5 %><br><br>
 
-  <%= f.label :comment %><br>
-  <%= f.text_area :comment, :cols => 60, :rows => 5 %><br><br>
+    <%= f.submit "Add Comment", class: "btn btn-primary btn-sm" %>
+  <% end %>
+  <br>
+  <% if @blog.user == current_user %>
+  <%= link_to "Edit Post", edit_blog_path(@blog), method: 'get' %><br><br>
+  <%= button_to "Delete Post", blog_path(@blog), method: 'delete' %>
+  <% else %>
+  <%= link_to "Back to #{@blog.user.first_name}'s Profile", user_path(@blog.user.user_name), method: 'get' %>
+  <% end %>
+  <br><br>
+</div>
 
-  <%= f.submit "Add Comment", class: "btn btn-primary btn-sm" %>
-<% end %>
-<br><br>
-<%= link_to "Edit Post", edit_blog_path(@blog), method: 'get' %><br><br>
-<%= button_to "Delete Post", blog_path(@blog), method: 'delete' %>
-<%= link_to "Back to #{@blog.user.first_name}'s Profile", user_path(@blog.user.user_name), method: 'get' %>
-
-
-  </div>
+<%=render 'search'%>

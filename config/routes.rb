@@ -5,7 +5,9 @@ Rails.application.routes.draw do
 
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
-  delete '/logout' => 'sessions#destroy', as: 'logout'
+  get '/logout' => 'sessions#destroy', as: 'logout'
+
+  post '/users/search', to: 'users#search', as: 'search'
 
   get '/users', to: 'users#index'
   get '/users/new', to: 'users#new'
@@ -14,7 +16,7 @@ Rails.application.routes.draw do
   post '/users', to: 'users#create'
   patch '/users/:user_name', to: 'users#update'
   delete '/users/:user_name', to: 'users#delete'
-  post '/users/search', to: 'users#search', as: 'search'
+
 
   get '/:user_name/welcome', to: 'welcome#home', as: 'welcome'
 
@@ -28,7 +30,8 @@ Rails.application.routes.draw do
   # delete '/blogs/:id', to: 'blogs#delete'
 
   post '/blogs/:id', to: 'likes#create', as: 'like_blog'
-  post '/blog/:id/comments', to: 'comments#add_comment', as: 'add_comment'
+  post '/blogs/:id/comments', to: 'comments#add_comment', as: 'add_comment'
+  get 'comments', to: 'comments#destroy', as: 'delete_comment'
 
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

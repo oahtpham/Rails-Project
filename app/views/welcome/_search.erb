@@ -1,0 +1,13 @@
+<div class="jumbotron">
+  <div class="blog-bottom">
+    <%= form_tag search_path, method: :post, class: "navbar-form navbar-center search-form" do %>
+      <%= text_field_tag(
+          :search,
+          params[:search],
+          placeholder: "Search",
+          class: "form-control",
+      ) %>
+    <% end %><br>
+    <a class="btn btn-primary btn-lg" href="/users/new" role="button"> Search for users »</a>
+  </div>
+</div>

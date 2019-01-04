@@ -1,4 +1,5 @@
 class BlogsController < ApplicationController
+  skip_before_action :authorized, only: [:show]
 
   def new
     @blog = Blog.new
@@ -15,9 +16,11 @@ class BlogsController < ApplicationController
 
   def show
     find_blog
+    if session[:user_id]
+      find_user
+    end
     @comment = Comment.new
     @users = User.all
-    find_user
     render :show
   end
 

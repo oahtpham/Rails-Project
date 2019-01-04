@@ -6,6 +6,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
 			</button>
 			<a class="navbar-brand" href=<%= users_path %>>S c a t t r </a>
 		</div>
@@ -14,11 +15,10 @@
 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Options     <span class="caret"></span></a>
 					<ul class="dropdown-menu">
+						<li><a href=<%= welcome_path(@user.user_name) %>>Home</a></li>
 						<li><a href=<%= new_blog_path %>>Write Blog Post</a></li>
 						<li><a href=<%= edit_user_path(@user.user_name) %>>Edit Profile</a></li>
-
-						<li><%= link_to "Log-Out", logout_path, method: :delete, remote: true %> </li>
-
+						<li><a href=<%= logout_path %>>Log-out</a></li>
 					</ul>
 		</div>
 	</div>

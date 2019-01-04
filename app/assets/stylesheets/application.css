@@ -11,22 +11,10 @@
  * It is generally better to create a new file per style scope.
  */
 
- #logout {
-     background:none!important;
-     color:inherit;
-     border:none;
-     padding:0!important;
-     font: inherit;
-     /*border is optional*/
-     border-bottom:1px solid #444;
-     cursor: pointer;
-}
-
 
 #blog-body {
-  padding: 40;
-  margin-right: 70;
-  margin-left: 70;
+  padding-right: 15px;
+  padding-left: 15px;
   font-family: 'Quicksand', sans-serif;
 }
 
@@ -35,6 +23,13 @@
   text-align: center;
   font-family: 'Quicksand', sans-serif;
   height: 50vw
+}
+
+.error {
+  text-align: center;
+  padding: 200;
+  font-size: 3rem;
+  font-family: 'Quicksand', sans-serif;
 }
 
 .jumbotron {
@@ -73,13 +68,14 @@
 .navbar {
   background-color: #428bca;
   border-color: #428bca;
+  border: 0px;
+  margin-bottom: 0;
 }
 
 .navbar-nav {
   font-family: 'Quicksand', sans-serif;
   color: #FFFFFF;
 }
-
 
 .navbar-inverse .navbar-brand {
   font-family: 'Monoton', cursive;

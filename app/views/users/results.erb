@@ -1,0 +1,5 @@
+<% if @results %>
+  <% @results.each do |result| %>
+    <%= link_to "#{result.first_name} #{result.last_name}", user_path(result.user_name) %>
+  <% end %>
+<% end %>
