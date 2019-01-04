@@ -1,5 +1,14 @@
-<% if @results %>
-  <% @results.each do |result| %>
-    <%= link_to "#{result.first_name} #{result.last_name}", user_path(result.user_name) %>
+<div class="container">
+  <br>
+  <h1> Search Results: </h1>
+  <br>
+  <% if @results != [] %>
+    <% @results.each do |result| %>
+      <h3><li><%= link_to "#{result.first_name} #{result.last_name}", user_path(result.user_name) %></li></h3>
+    <% end %><br><br><br><br><br><br><br><br><br><br><br><br><br>
+  <% else %>
+      <h4> No users exist. Try searching again.<h4><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
   <% end %>
-<% end %>
+</div>
+
+<%= render 'search' %>

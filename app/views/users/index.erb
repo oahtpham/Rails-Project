@@ -17,7 +17,7 @@
   <strong><b> Check out our community of bloggers!</b></strong>
 </h2><br>
 <div style="display: flex; flex-flow: row wrap; justify-content: center; text-align: center;">
-  <% @users.each do |user| %>
+  <% @users.slice(0..3).each do |user| %>
   <div style="width: 300px; height:300px">
   <h4><%= "#{user.first_name} #{user.last_name}" %><h4>
     <% if !user.img_url || user.img_url == "" %>

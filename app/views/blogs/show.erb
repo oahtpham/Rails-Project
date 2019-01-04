@@ -10,13 +10,13 @@
   <br><br>
     <h4><strong><u> Comments </u></strong></h4><br>
     <% @blog.comments.each do |comment| %>
-      <% if @user.img_url %>
+      <% if comment.user.img_url %>
         <img class="img-circle" src=<%="#{comment.user.img_url}"%> width="30" height="30">
       <% end %>
       <%= link_to comment.user.first_name, user_path(comment.user.user_name) %> says... <br>
       <%= comment.comment %><br>
       <% if comment.user == current_user %>
-        <%= link_to "Delete comment", delete_comment_path %> <br><br>
+        <br><%= button_to "Delete Comment", delete_comment_path, method: 'delete' %>
       <% else %>
         <br>
       <% end %>
@@ -33,7 +33,7 @@
   <%= link_to "Edit Post", edit_blog_path(@blog), method: 'get' %><br><br>
   <%= button_to "Delete Post", blog_path(@blog), method: 'delete' %>
   <% else %>
-  <%= link_to "Back to #{@blog.user.first_name}'s Profile", user_path(@blog.user.user_name), method: 'get' %>
+  <%= link_to "Back to #{@blog.user.first_name}'s Profile", user_path(@blog.user.user_name), method: 'post' %>
   <% end %>
   <br><br>
 </div>

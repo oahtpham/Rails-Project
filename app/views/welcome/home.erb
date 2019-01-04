@@ -1,17 +1,15 @@
 <br><br>
 <div class="container">
 <div class="blog-header">
-  <% if !@user.img_url %>
-    <p>
-      <%= "No Photo Uploaded" %>
-    </p>
-    <% else %>
-      <img class="img-circle" src=<%="#{@user.img_url}"%> width="90" height="90">
-  <% end %>
+    <img class="img-circle" src=<%="#{@user.img_url}"%> width="90" height="90">
     <span class="blog-title"><%= "Welcome, #{@user.first_name}!"%></span><br>
 </div>
 <div>
 <br>
+      <% if @user.blogs == [] %>
+        <h4><%= "You have no posts. Start writing " %>
+        <%= link_to "here!", new_blog_path %><h4><br><br><br><br><br><br><br><br>
+      <% else %>
       <% @user.blogs.each do |blog| %>
       <h2><%= link_to blog.title, blog_path(blog)%></h2>
       <h5><%= blog.created_at.strftime("%A,  %B %d, %Y") %></h5>
@@ -19,6 +17,7 @@
       <%= simple_format(blog.content) %><br>
       <%= blog.likes.count %><%= (blog.likes.count) == 1 ? ' Like' : ' Likes'%> : <%= blog.comments.count %><%= (blog.comments.count) == 1 ? ' Comment' : ' Comments'%><br><br>
       ----------------------------------------------------<br><br>
+      <% end %>
       <% end %>
 <br><br><br>
 </div>

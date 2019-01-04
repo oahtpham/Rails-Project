@@ -31,7 +31,7 @@ Rails.application.routes.draw do
 
   post '/blogs/:id', to: 'likes#create', as: 'like_blog'
   post '/blogs/:id/comments', to: 'comments#add_comment', as: 'add_comment'
-  get 'comments', to: 'comments#destroy', as: 'delete_comment'
+  delete '/blogs/:id/comments', to: 'comments#destroy', as: 'delete_comment'
 
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

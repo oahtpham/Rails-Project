@@ -3,15 +3,8 @@ class UsersController < ApplicationController
 
   def search
     @user = current_user
-    @results = []
-    @results << User.where('first_name LIKE ?', "%#{params[:search]}%")
-    @results << User.where('last_name LIKE ?', "%#{params[:search]}%")
-    @results << User.where('user_name LIKE ?', "%#{params[:search]}%")
-    if @results
-      render :results
-    else
-      render :error
-    end
+    @results = User.where('first_name LIKE :search OR last_name LIKE :search OR user_name LIKE :search', search: "%#{params[:search]}%")
+    render :results
   end
 
   def index
@@ -37,7 +30,7 @@ class UsersController < ApplicationController
     @user = User.create(strong_params)
     if @user.valid?
       session[:user_id] = @user.id
-      redirect_to controller:'welcome', action: 'home'
+      redirect_to welcome_path(@user.user_name)
     else
       @errors = @user.errors.full_messages
       redirect_to users_new_path
@@ -52,7 +45,7 @@ class UsersController < ApplicationController
   def update
     find_user
     if @user.update(strong_params)
-      redirect_to user_path(@user.user_name)
+      redirect_to welcome_path(@user.user_name)
     else
       @errors = @user.errors.full_messages
       render :edit
@@ -69,7 +62,7 @@ class UsersController < ApplicationController
 
 
   def strong_params
-    params.require(:user).permit(:user_name, :first_name, :last_name, :age, :bio, :img_url, :password, :password_confirmation, :music_url)
+    params.require(:user).permit(:user_name, :first_name, :last_name, :age, :bio, :password, :password_confirmation, :img_url, :music_url)
   end
 
   def find_user

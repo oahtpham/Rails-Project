@@ -1,25 +1,23 @@
 <br><br>
 <div class="container">
 <div class="blog-header">
-  <% if !@user.img_url %>
-    <p>
-      <%= "No Photo Uploaded" %>
-    </p>
-    <% else %>
       <img class="img-circle" src=<%="#{@user.img_url}"%> width="90" height="90">
-  <% end %>
     <span class="blog-title"><%= "#{@user.first_name}'s Blog"%></span><br>
 </div>
 <div>
 <br>
-      <% @user.blogs.each do |blog| %>
-      <h2><%= link_to blog.title, blog_path(blog)%></h2>
-      <h5><%= blog.created_at.strftime("%A,  %B %d, %Y") %></h5>
-      <br>
-      <%= simple_format(blog.content) %><br>
-      <%= blog.likes.count %><%= (blog.likes.count) == 1 ? ' Like' : ' Likes'%> : <%= blog.comments.count %><%= (blog.comments.count) == 1 ? ' Comment' : ' Comments'%><br><br>
-      ----------------------------------------------------<br><br>
-      <% end %>
+          <% if @user.blogs == [] %>
+            <h4><%= "#{@user.first_name} has no posts." %></h4><br><br><br><br><br><br><br><br>
+          <% else %>
+          <% @user.blogs.each do |blog| %>
+            <h2><%= link_to blog.title, blog_path(blog)%></h2>
+            <h5><%= blog.created_at.strftime("%A,  %B %d, %Y") %></h5>
+            <br>
+            <%= simple_format(blog.content) %><br>
+            <%= blog.likes.count %><%= (blog.likes.count) == 1 ? ' Like' : ' Likes'%> : <%= blog.comments.count %><%= (blog.comments.count) == 1 ? ' Comment' : ' Comments'%><br><br>
+            ----------------------------------------------------<br><br>
+          <% end %>
+          <% end %>
 <br><br><br>
 </div>
 </div>
