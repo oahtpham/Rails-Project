@@ -4,7 +4,8 @@
   <br>
   <% if @results != [] %>
     <% @results.each do |result| %>
-      <h3><li><%= link_to "#{result.first_name} #{result.last_name}", user_path(result.user_name) %></li></h3>
+      <h3><%= link_to "#{result.first_name} #{result.last_name}", user_path(result.user_name) %></h3>
+      <%= "#{result.bio}" %><br><br>
     <% end %><br><br><br><br><br><br><br><br><br><br><br><br><br>
   <% else %>
       <h4> No users exist. Try searching again.<h4><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
