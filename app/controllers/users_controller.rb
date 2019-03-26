@@ -62,7 +62,7 @@ class UsersController < ApplicationController
 
 
   def strong_params
-    params.permit(:user_name, :first_name, :last_name, :age, :bio, :password, :password_confirmation, :music_url)
+    params.permit(:user_name, :first_name, :last_name, :age, :bio, :password, :password_confirmation, :img_url, :music_url)
   end
 
   def find_user
